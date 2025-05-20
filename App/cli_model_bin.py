@@ -3,7 +3,8 @@ import torch
 import yaml
 import os
 import sys
-from transformers import AutoModelForSequenceClassification, BertTokenizer
+from transformers import BertTokenizer
+from model_def import FraudClassifier
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -15,9 +16,24 @@ def load_config(path):
         config = yaml.safe_load(f)
         return config
 
-def load_model(model_name):
+def load_model(path, model_name):
     """Load pre-trained model with error handling."""
-    model = AutoModelForSequenceClassification.from_pretrained(model_name).to(DEVICE)
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"Model file not found: {path}")
+    
+    model = FraudClassifier(MODEL_NAME=model_name)
+    state_dict = torch.load(path, map_location=torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
+
+    if any(key.startswith('bert.') for key in state_dict.keys()):
+        model.load_state_dict(state_dict)
+    else:
+        model_dict = model.state_dict()
+        filtered_state_dict = {k: v for k, v in state_dict.items() if k in model_dict}
+        model_dict.update(filtered_state_dict)
+        model.load_state_dict(model_dict)
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model.to(device)
     model.eval()
     return model
 
@@ -45,7 +61,7 @@ def predict(model, tokenizer, rating, review, max_len):
             attention_mask=attention_mask,
             token_type_ids=token_type_ids
         )
-        probs = torch.softmax(outputs.logits, dim=1)
+        probs = torch.softmax(outputs, dim=1)
         pred = torch.argmax(probs, dim=1).item()
         
     return pred, probs.cpu().numpy().flatten()
@@ -64,16 +80,16 @@ def main():
         config_path = os.path.join(script_dir, args.config) if not os.path.isabs(args.config) else args.config
         config = load_config(config_path)
 
-        tokenizer_name = config["model_name"]
-        model_name = config["hugging_face_repo"]["model_name"]
+        model_path = os.path.join(script_dir, config["model_path"]) if not os.path.isabs(config["model_path"]) else config["model_path"]
+        model_name = config["model_name"]
         max_len = config.get("max_len", 512)
         class_names = {int(k): v for k, v in config["class_names"].items()}
 
         rating = args.rating if args.rating else input("Enter rating (e.g. 5): ").strip()
         review = args.review if args.review else input("Enter review text: ").strip()
 
-        tokenizer = BertTokenizer.from_pretrained(tokenizer_name)
-        model = load_model(model_name)
+        tokenizer = BertTokenizer.from_pretrained(model_name)
+        model = load_model(model_path, model_name)
         pred, probs = predict(model, tokenizer, rating, review, max_len)
         label = class_names.get(pred, f"Class {pred}")
 

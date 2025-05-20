@@ -1,6 +1,10 @@
 model_path: "model/model.bin"
 model_name: "bert-base-cased"
+
 max_len: 300
 class_names:
   0: "Not Fraud"
   1: "Fraud"
+
+hugging_face_repo:
+  model_name: "drt-der/fraud_classification_reviews"
