@@ -4,4 +4,3 @@ __pycache__/
 # Models or extra data files you want to ignore
 models/
 *.bin
-*.csv
