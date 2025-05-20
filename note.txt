@@ -1,0 +1,99 @@
+dataset without titles
+dataset with titles
+
+main goals to see how mine varies
+
+data analysis
+
+I have this data
+I can take this data and put it into a fake review generator
+it can see what a real review looks like and what a fake review looks like.
+problem: 
+    model might just learn ai review vs human review
+    model might not learn fraud review vs real review   
+
+but people who are likely to do fake reviews would use some of these review site
+
+What classifies fraudualent review
+
+
+A fake review is any review that is misleading, fabricated, or incentivized 
+in a way that doesn't represent a genuine customer experience. 
+These can include reviews written by paid individuals,
+ ai-generated reviews,
+ or even disgruntled competitors
+ looking to harm a business's reputation.
+        
+run train for type_classification
+run predict for type_classification
+run classify.py for amazon_review_full_csv again
+rearange files so easier to identify no_title and title version
+run classify.py (2018 dataset the type classifier) (to get polarity so no_title version of model)
+both models use no_title but only keep predictions with
+    high confidence .9
+    anything lower goes to title model becuase of its confidence
+        - meaning title is either overconfident
+        - or it has better bounderies
+
+run product_type/classify.py (amazon_revie_full_csv) (product_type)
+
+
+we will do the classification for both
+1. run datset converter so I get the one with titles 
+2. run dataset converter so I get the onw without titles
+
+- need model to classify types of reviews
+
+titles
+    - with type
+
+no titles
+    - with type
+
+model 2. reiview with title
+titles
+p/n        
+seperated by types
+
+model 1. review without title
+no titles
+p/negative
+seperated by types
+
+datasets : 
+amazon_review_polarity_csv
+dataset - https://nijianmo.github.io/amazon/index.html
+NLP - fast.ai datasets was accessed on {DATE} from https://registry.opendata.aws/fast-ai-nlp.
+
+
+notes:
+    Had to choose epoch one model because of problem
+    Compared data of two models (decision better to have both)
+    Checking lower val
+    is it better to have both? or just keep lower val
+    both models use no_title but only keep predictions with
+    high confidence .9
+    anything lower goes to title model becuase of its confidence
+        - meaning title is either overconfident
+        - or it has better bounderies
+
+        Step 1: Use Model A as the primary predictor
+        It has higher overall accuracy, so you trust its predictions more in general.
+
+        Step 2: Set a confidence threshold
+        E.g., 0.90
+
+        If Model A's confidence ≥ 0.90, you accept its prediction.
+
+        If Model A's confidence < 0.90, defer to Model B.
+
+        Step 3: Use Model B for low-confidence cases
+        Model B is consistently confident (and possibly more decisive), so you use it when Model A hesitates.
+
+        def hybrid_predict(text):
+            pred_a, conf_a = model_a.predict(text)
+            if conf_a >= 0.90:
+                return pred_a, conf_a, "Model A"
+            else:
+                pred_b, conf_b = model_b.predict(text)
+                return pred_b, conf_b, "Model B"

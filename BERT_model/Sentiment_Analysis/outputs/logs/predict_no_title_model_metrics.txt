@@ -1,0 +1,34 @@
+Test Set Metrics:
+Accuracy: 0.9208
+Precision: 0.9215
+Recall: 0.9208
+F1: 0.9208
+Confusion matrix saved to BERT_model/Sentiment_Analysis/outputs/figures/confusion_no_title_matrix.png
+Predictions saved to BERT_model/Sentiment_Analysis/outputs/predictions/test_no_title_predictions.csv
+
+Sample Predictions:
+
+Sample 1:
+True Label: 0 (Negative)
+Predicted Label: 0 (Negative)
+Confidence: 0.8918
+
+Sample 2:
+True Label: 1 (Positive)
+Predicted Label: 1 (Positive)
+Confidence: 0.9976
+
+Sample 3:
+True Label: 1 (Positive)
+Predicted Label: 1 (Positive)
+Confidence: 0.9485
+
+Sample 4:
+True Label: 1 (Positive)
+Predicted Label: 1 (Positive)
+Confidence: 0.8003
+
+Sample 5:
+True Label: 0 (Negative)
+Predicted Label: 0 (Negative)
+Confidence: 0.9824

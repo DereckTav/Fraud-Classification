@@ -1,0 +1,20 @@
+model:
+  name: "bert-base-cased"
+  n_classes: 2
+  max_len: 300
+
+training:
+  batch_size: 16
+  epochs: 3
+  learning_rate_bert: 1e-5
+  learning_rate_classifier: 5e-5
+  weight_decay: 1e-3
+  warmup_ratio: 0.1
+  patience: 3
+  epsilon: 1e-8
+  use_amp: true 
+  num_workers: 4 
+
+data:
+  test_size: 0.1
+  random_state: 42

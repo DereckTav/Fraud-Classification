@@ -1,0 +1,106 @@
+Test Set Metrics:
+Accuracy: 0.9002
+Precision: 0.9008
+Recall: 0.9002
+F1: 0.9002
+Confusion matrix saved to BERT_model/Sentiment_Analysis/outputs/figures/confusion_no_title_matrix(title-review).png
+Predictions saved to BERT_model/Sentiment_Analysis/outputs/predictions/test_no_title_predictions.csv
+
+Sample Predictions:
+
+Sample 1:
+True Label: 0 (Negative)
+Predicted Label: 0 (Negative)
+Confidence: 0.9988
+
+Sample 2:
+True Label: 1 (Positive)
+Predicted Label: 0 (Negative)
+Confidence: 0.9989
+
+Sample Predictions:
+
+Sample 1:
+True Label: 0 (Negative)
+Predicted Label: 0 (Negative)
+Confidence: 0.9988
+
+Sample 2:
+True Label: 1 (Positive)
+Predicted Label: 0 (Negative)
+Confidence: 0.9989
+
+
+Sample 1:
+True Label: 0 (Negative)
+Predicted Label: 0 (Negative)
+Confidence: 0.9988
+
+Sample 2:
+True Label: 1 (Positive)
+Predicted Label: 0 (Negative)
+Confidence: 0.9989
+
+True Label: 0 (Negative)
+Predicted Label: 0 (Negative)
+Confidence: 0.9988
+
+Sample 2:
+True Label: 1 (Positive)
+Predicted Label: 0 (Negative)
+Confidence: 0.9989
+
+Predicted Label: 0 (Negative)
+Confidence: 0.9988
+
+Sample 2:
+True Label: 1 (Positive)
+Predicted Label: 0 (Negative)
+Confidence: 0.9989
+
+
+Sample 2:
+True Label: 1 (Positive)
+Predicted Label: 0 (Negative)
+Confidence: 0.9989
+
+True Label: 1 (Positive)
+Predicted Label: 0 (Negative)
+Confidence: 0.9989
+
+Sample 3:
+True Label: 1 (Positive)
+Predicted Label: 1 (Positive)
+Predicted Label: 0 (Negative)
+Confidence: 0.9989
+
+Sample 3:
+True Label: 1 (Positive)
+Predicted Label: 1 (Positive)
+Confidence: 0.9989
+
+Sample 3:
+True Label: 1 (Positive)
+Predicted Label: 1 (Positive)
+Confidence: 0.9989
+
+True Label: 1 (Positive)
+Predicted Label: 1 (Positive)
+Confidence: 0.9989
+
+Confidence: 0.9989
+
+Sample 4:
+True Label: 1 (Positive)
+Sample 4:
+True Label: 1 (Positive)
+True Label: 1 (Positive)
+Predicted Label: 1 (Positive)
+Confidence: 0.9961
+
+Sample 5:
+True Label: 0 (Negative)
+True Label: 0 (Negative)
+Predicted Label: 0 (Negative)
+Predicted Label: 0 (Negative)
+Confidence: 0.9991
