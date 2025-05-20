@@ -79,13 +79,7 @@ def main():
 
         print(f"\nPrediction: {label} (Confidence: {probs[pred]:.4f})")
         print(f"All probabilities: {dict(zip(class_names.values(), probs))}")
-
-        if "fraud" in label.lower():
-            print("This review is fraud.")
-        else:
-            print("This review is not fraud.")
-
-        return 0
+        print(f'this review is {label}')
 
     except FileNotFoundError as e:
         print(f"\nERROR: {str(e)}")
