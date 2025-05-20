@@ -128,6 +128,3 @@ The current implementation achieves:
 
 ## Note
 This project is an initial proof of concept with satisfactory results. Due to computational resource constraints, models were trained on a limited dataset. The approach demonstrates viability, but would benefit from additional data and computing resources for a production-ready system.
-
-## License
-[MIT](LICENSE)
